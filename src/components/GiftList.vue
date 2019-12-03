@@ -1,11 +1,15 @@
 <template>
   <div class="gift-list">
     <!-- <button @click="getScrollHeight">看長度</button> -->
-    <div class="gift-item" v-for="(gift, idx) in gifts" :key="idx">
+    <div @click="toDetailPage(gift)" class="gift-item" v-for="(gift, idx) in gifts" :key="idx">
       <div class="title-block">
-        <p>{{gift.title}}</p>
+        <p>{{gift.slug}} - {{gift.postedBy}}</p>
       </div>
-      <img :src="gift.thumbnailUrl" width="200" height="200" alt="">
+      <div class="info">
+        <div class="votes">{{gift.votes}}</div>
+        <img :src="gift.exchange.trophyUrl" alt="" width="35">
+      </div>
+      <img class="banner-img" :src="gift.thumbnailUrl" alt="">
     </div>
   </div>
 </template>
@@ -13,6 +17,7 @@
 <script lang="ts">
 import { Component, Vue, Prop, Watch } from 'vue-property-decorator';
 import Gift from '@/entity/Gift.ts';
+import axios from 'axios';
 @Component
 export default class GiftList extends Vue {
   @Prop() public gifts!: Gift[]; // 禮物列表
@@ -34,6 +39,14 @@ export default class GiftList extends Vue {
       }
     }
   }
+  public async toDetailPage(gift: Gift) {
+    this.$router.push({
+      name: 'gift',
+      params: {
+        slug: gift.slug,
+      },
+    });
+  }
   private mounted(): void {
     // 新增監聽事件
     window.addEventListener('scroll', (e: Event) => {
@@ -50,21 +63,36 @@ export default class GiftList extends Vue {
 </script>
 
 <style lang="scss" scoped>
-@import '~@/assets/scss/color.scss';
 .gift-list {
   display: flex;
   flex-wrap: wrap;
   .gift-item {
+    cursor: pointer;
+    width: 300px;
+    height: 250px;
     margin: 10px;
     position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
     .title-block {
       background-color: $gift-title;
       width: 100%;
+      top: 0;
       position: absolute;
+      z-index: 100;
       > p {
+        padding: 5px 10px;
+        text-align: left;
         margin: 0;
         color: white;
       }
+    }
+    .info {
+      width: 100%;
+    }
+    > .banner-img {
+      width: 250px;
     }
   }
 }
