@@ -9,6 +9,6 @@ export default class Gift {
   public bodySnudown: string = ''; // 預覽內容
   public title: string = ''; // 標題
   public thumbnailUrl: string = ''; // 預覽圖片
-  public slug: string = ''; // 網頁標題 camel case
+  public slug: string = ''; // 網頁標題 camel case (也可用於禮物細節頁面)
   public commentsCount: number = 0; // 評論人數
 }
