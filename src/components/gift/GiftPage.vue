@@ -1,32 +1,44 @@
 <template>
   <div class="gift-page">
-    saddas
+    <AssetsBox class="images" :assets="giftData.assets" />
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
-import Gift from '@/entity/Gift.ts';
 import axios from 'axios';
-@Component
+import GiftResponse from '@/entity/GiftResponse';
+import GiftData from '@/entity/GiftResp/RespData';
+import AssetsBox from './AssetsBox.vue';
+@Component({
+  components: {
+    AssetsBox,
+  },
+})
 export default class GiftPage extends Vue {
   // 禮物資訊 URL
   public DETAIL_API: string = 'https://www.redditgifts.com/api/v1/exchanges/gallery/gift/';
+  public giftData: GiftData = new GiftData();
   // public giftDeatil: GiftDetai;
   /**
    * 發出禮物資訊請求
    * @param slug - 用於禮物 api，識別禮物用
    */
-  public async getGiftDetail(slug: string) {
+  public async getGiftData(slug: string) {
     const respData = await axios.get(this.DETAIL_API + slug);
-    const giftDetail = respData.data;
+    const giftResp: GiftResponse = respData.data;
+    this.giftData = giftResp.data;
+    console.log(this.giftData);
   }
   private created() {
     const slug = this.$route.params.slug;
-    this.getGiftDetail(slug);
+    this.getGiftData(slug);
   }
 }
 </script>
 
 <style lang="scss" scoped>
+.images {
+  max-width: 500px;
+}
 </style>
