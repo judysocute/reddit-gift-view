@@ -7,7 +7,7 @@
     <div class="scroll-side-bar" id="assets-side-bar">
       <template v-for="(asset, idx) in assets">
           <div
-            class="asset-img"
+            class="asset-img cursor-pointer"
             :class="{blurry: idx !== viewPosition}"
             :key="idx"
             tabindex="0"
@@ -68,7 +68,6 @@ export default class AssetsBox extends Vue {
     scroll-behavior: smooth;
   }
   .asset-img {
-    cursor: pointer;
     background-position: center;
     background-size: cover;
     margin-bottom: 15px;

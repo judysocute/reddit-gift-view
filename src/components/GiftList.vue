@@ -1,7 +1,7 @@
 <template>
   <div class="gift-list">
     <!-- <button @click="getScrollHeight">看長度</button> -->
-    <div @click="toDetailPage(gift)" class="gift-item" v-for="(gift, idx) in gifts" :key="idx">
+    <div @click="toDetailPage(gift)" class="gift-item cursor-pointer" v-for="(gift, idx) in gifts" :key="idx">
       <div class="title-block">
         <p>{{gift.slug}} - {{gift.postedBy}}</p>
       </div>
@@ -67,7 +67,6 @@ export default class GiftList extends Vue {
   display: flex;
   flex-wrap: wrap;
   .gift-item {
-    cursor: pointer;
     width: 300px;
     height: 250px;
     margin: 10px;
