@@ -102,6 +102,7 @@ export default class GiftPage extends Vue {
     }
     width: 48%;
     .banner {
+      width: 100%;
       display: table;
       height: auto;
       .votes {
