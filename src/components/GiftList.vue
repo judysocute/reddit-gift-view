@@ -76,7 +76,7 @@ export default class GiftList extends Vue {
     justify-content: space-between;
     align-items: flex-end;
     .title-block {
-      background-color: $gift-title;
+      background-color: $primary;
       width: 100%;
       top: 0;
       position: absolute;
