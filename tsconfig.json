@@ -17,6 +17,9 @@
     "paths": {
       "@/*": [
         "src/*"
+      ],
+      "ramda": [
+        "node_modules/ramda/index"
       ]
     },
     "lib": [
@@ -35,5 +38,6 @@
   ],
   "exclude": [
     "node_modules"
-  ]
+  ],
+  "references": []
 }
