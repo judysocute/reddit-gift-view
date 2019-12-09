@@ -1,7 +1,8 @@
 <template>
   <div class="awards" v-if="giftData.awards">
     <p>This gift received awards!</p>
-    <img class="cursor-pointer" v-for="(award, idx) in giftData.awards" :src="award.smallIconUrl" :alt="award.title" :key="idx">
+    <!-- <img class="cursor-pointer" v-for="(award, idx) in giftData.awards" :src="award.smallIconUrl" :alt="award.title" :key="idx"> -->
+    <i class="nes-icon coin is-medium cursor-pointer" v-for="(award, idx) in giftData.awards" :key="idx"></i>
   </div>
 </template>
 

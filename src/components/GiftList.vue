@@ -11,6 +11,10 @@
       </div>
       <img class="banner-img" :src="gift.thumbnailUrl" alt="">
     </div>
+    <div v-if="loading" class="nes-balloon from-left loading-item">
+      <p>Loading Gift List {{gifts.length}} to {{gifts.length + 100}}</p>
+      <i class="nes-icon reddit is-medium"></i>
+    </div>
   </div>
 </template>
 
@@ -65,7 +69,11 @@ export default class GiftList extends Vue {
 <style lang="scss" scoped>
 .gift-list {
   display: flex;
+  justify-content: space-around;
   flex-wrap: wrap;
+  .loading-item {
+    max-width: 300px;
+  }
   .gift-item {
     width: 300px;
     height: 250px;
@@ -74,6 +82,9 @@ export default class GiftList extends Vue {
     display: flex;
     justify-content: space-between;
     align-items: flex-end;
+    transition-property: opacity;
+    transition-duration: .3s;
+    opacity: initial;
     .title-block {
       background-color: $primary;
       width: 100%;
@@ -92,6 +103,11 @@ export default class GiftList extends Vue {
     }
     > .banner-img {
       width: 250px;
+    }
+    &:hover {
+      transition-property: opacity;
+      transition-duration: .3s;
+      opacity: .5;
     }
   }
 }
