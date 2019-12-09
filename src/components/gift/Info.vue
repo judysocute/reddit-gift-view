@@ -27,7 +27,7 @@ export default class Info extends Vue {
    */
   public toGallery() {
     this.$router.push({
-      name: 'home',
+      name: 'gallery',
     });
   }
 }
