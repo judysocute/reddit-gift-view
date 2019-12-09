@@ -1,7 +1,7 @@
 <template>
   <div class="gift-list">
     <!-- <button @click="getScrollHeight">看長度</button> -->
-    <div @click="toDetailPage(gift)" class="gift-item" v-for="(gift, idx) in gifts" :key="idx">
+    <div @click="toDetailPage(gift)" class="gift-item cursor-pointer" v-for="(gift, idx) in gifts" :key="idx">
       <div class="title-block">
         <p>{{gift.slug}} - {{gift.postedBy}}</p>
       </div>
@@ -10,6 +10,10 @@
         <img :src="gift.exchange.trophyUrl" alt="" width="35">
       </div>
       <img class="banner-img" :src="gift.thumbnailUrl" alt="">
+    </div>
+    <div v-if="loading" class="nes-balloon from-left loading-item">
+      <p>Loading Gift List {{gifts.length}} to {{gifts.length + 100}}</p>
+      <i class="nes-icon reddit is-medium"></i>
     </div>
   </div>
 </template>
@@ -65,9 +69,12 @@ export default class GiftList extends Vue {
 <style lang="scss" scoped>
 .gift-list {
   display: flex;
+  justify-content: space-around;
   flex-wrap: wrap;
+  .loading-item {
+    max-width: 300px;
+  }
   .gift-item {
-    cursor: pointer;
     width: 300px;
     height: 250px;
     margin: 10px;
@@ -75,6 +82,9 @@ export default class GiftList extends Vue {
     display: flex;
     justify-content: space-between;
     align-items: flex-end;
+    transition-property: opacity;
+    transition-duration: .3s;
+    opacity: initial;
     .title-block {
       background-color: $primary;
       width: 100%;
@@ -93,6 +103,11 @@ export default class GiftList extends Vue {
     }
     > .banner-img {
       width: 250px;
+    }
+    &:hover {
+      transition-property: opacity;
+      transition-duration: .3s;
+      opacity: .5;
     }
   }
 }

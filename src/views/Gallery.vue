@@ -15,7 +15,7 @@ import axios from 'axios';
   components: {GiftList},
 })
 
-export default class Home extends Vue {
+export default class Gallery extends Vue {
   public gifts: Gift[] = [];
   public page: number = 1;
   public loading: boolean = true;
