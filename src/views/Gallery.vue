@@ -26,7 +26,8 @@ export default class Gallery extends Vue {
    */
   public async loadMore(idx: number) {
     this.loading = true;
-    const respData = await axios.get(`https://www.redditgifts.com/api/v1/exchanges/secret-santa-2017/gallery/?page_size=100&sort=date&sort_direction=DESC&page_number=${idx}`);
+    const slug: string = this.$route.params.slug; // 搜尋的交換禮物分類
+    const respData = await axios.get(`https://www.redditgifts.com/api/v1/exchanges/${slug}/gallery/?page_size=100&sort=date&sort_direction=DESC&page_number=${idx}`);
     const gifts: Gift[] = respData.data.data.gifts;
     if (this.page === 1 ) {
       this.gifts.push(...gifts);

@@ -1,6 +1,6 @@
 <template>
   <div class="navbar">
-    <div class="logo cursor-pointer" @click="toGallery">
+    <div class="logo cursor-pointer" @click="toHome">
       <p class="logo-text">
         <span class="reddit">reddit</span>
         <span class="gift">gifts</span>
@@ -13,10 +13,12 @@
 import { Component, Vue } from 'vue-property-decorator';
 @Component
 export default class Navbar extends Vue {
-  public toGallery() {
-    this.$router.push({
-      name: 'gallery',
-    });
+  public toHome() {
+    if (this.$route.name !== 'home') {
+      this.$router.push({
+        name: 'home',
+      });
+    }
   }
 }
 </script>
