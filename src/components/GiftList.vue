@@ -103,6 +103,8 @@ export default class GiftList extends Vue {
     }
     > .banner-img {
       width: 250px;
+      max-height: 100%;
+      max-width: 100%;
     }
     &:hover {
       transition-property: opacity;

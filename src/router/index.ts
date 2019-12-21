@@ -1,5 +1,6 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
+import Home from '@/views/Home.vue';
 import Gallery from '@/views/Gallery.vue';
 import GiftPage from '@/components/gift/GiftPage.vue';
 
@@ -7,7 +8,12 @@ Vue.use(VueRouter);
 
 const routes = [
   {
-    path: '/gallery',
+    path: '/',
+    name: 'home',
+    component: Home,
+  },
+  {
+    path: '/gallery/:slug',
     name: 'gallery',
     component: Gallery,
   },
